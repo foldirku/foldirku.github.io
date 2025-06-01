@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amplop</title>
+  <meta name="description" content="Ini amplop untuk kamu">
+  <meta property="og:title" content="Amplop">
+  <meta property="og:description" content="Ini amplop untuk kamu">
+  <meta property="og:image" content="https://www.wiltaxah.my.id/amplop.jpg">
+  <meta property="og:url" content="https://wiltaxah.my.id">
+  <meta property="og:type" content="website">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Serif', cursive;
+      overflow: hidden;
+      background: linear-gradient(135deg, #666666, #333333);
+      user-select: none;
+      z-index: 0;
+      background-image: url('o.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      background-position: center;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 720px;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+      backdrop-filter: blur(1px);
+      padding: 15px;
+      margin: 20px;
+      border-radius: 20px;
+      border: 2px solid #fff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      text-align: center;
+      animation: fadeIn 1s ease;
+      z-index: 2;
+    }
+
+    .emoji-circle {
+      width: 100px;
+      height: 100px;
+      background-color: rgba(255,255,255,0.5);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4rem;
+      margin: 0 auto 20px auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      animation: pulse 2s infinite;
+    }
+
+    .text {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 20px;
+      animation: fadeInText 0.5s ease;
+    }
+
+    .countdown {
+      font-size: 1.2rem;
+      color: #000;
+      margin-top: 10px;
+    }
+
+    button {
+      font-family: 'Serif', cursive;
+      font-size: 1.2rem;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 12px;
+      margin: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    button:first-of-type {
+      background-color: #fff;
+      color: #fff;
+    }
+
+    button:last-of-type {
+      background-color: #fff;
+      color: #000;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+    
+    .by {
+      text-decoration: none;
+      color: #fff;
+      position: fixed;
+      font-size: 0.8em;
+      bottom: 5px;
+      right: 5px;
+      padding: 5px;
+      border-radius: 10px;
+      background-color: rgba(0,0,0,0.3);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInText {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Hujan emoji */
+    .emoji-rain {
+      position: fixed;
+      bottom: 0px;
+      font-size: 2rem;
+      animation: fall linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+
+    /* Amplop */
+    .amplop {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      padding: 20px;
+      background-color: rgba(255,255,255,1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 6rem;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+      z-index: 30;
+    }
+
+    @keyframes bounce {
+      0%,50%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+      50% {
+        transform: translate(-50%, -55%) scale(1.1);
+      }
+    }
+
+    .fadeOut {
+      animation: fadeOut 1s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+      }
+    }
+    b {
+      color: red;
+    }
+  </style>
+</head>
+<body oncontextmenu="return false">
+  <div class="amplop" onclick="mulai()">
+    ✉️
+  </div>
+  <div class="container" id="konten">
+    <div class="emoji-circle" id="emoji">
+      ✉️
+    </div>
+    <div id="bucinText" class="text"></div>
+    <div id="countdown" class="countdown"></div>
+  </div>
+  <a class="by" href="https://www.wiltaxah.my.id">By: wiltaxah</a>
+
+  <script>
+    const messages = [
+      "disaat semua orang ingin wanita cantik, aku hanya ingin wanita yang tidak suka <b>berbohong</b> dan <b>tidak mudah akrab</b> pada Laki-Laki Lain."
+    ];
+    const emojis = [
+      "😔",
+    ];
+
+    let index = 0;
+    let countdown = 29;
+    const textElement = document.getElementById('bucinText');
+    const countdownElement = document.getElementById('countdown');
+    const emojiElement = document.getElementById('emoji');
+    const konten = document.getElementById('konten');
+    const amplop = document.querySelector('.amplop');
+
+    function mulai() {
+      amplop.classList.add("fadeOut");
+      setTimeout(() => {
+        amplop.style.display = "none";
+        konten.style.display = "block";
+        createEmojiRain();
+        showNextMessage();
+      }, 800);
+    }
+
+    function startCountdown() {
+      countdown = 29;
+      countdownElement.innerText = `( ${countdown} )`;
+      const interval = setInterval(() => {
+        countdown--;
+        if (countdown > -1) {
+          countdownElement.innerText = `( ${countdown} )`;
+        } else {
+          clearInterval(interval);
+          showNextMessage();
+        }
+      },
+        1000);
+    }
+
+    function showNextMessage() {
+      if (index < messages.length) {
+        textElement.innerHTML = messages[index];
+        emojiElement.innerText = emojis[index % emojis.length];
+        index++;
+        startCountdown();
+      } else {
+        countdownElement.innerHTML = `
+        <button><a href='https://wa.me/?text=Jawab:' target='_blank'>Jawab</a></button>`;
+      //  <button><a href='https://wa.me/?text=Tidak' target='_blank'>Tidak</a></button>
+        
+        emojiElement.innerText = "💬";
+        textElement.innerText = "";
+      }
+    }
+
+    // Hujan emoji
+    function createEmojiRain() {
+      const emojiList = emojis;
+      setInterval(() => {
+        const emoji = document.createElement('div');
+        emoji.className = 'emoji-rain';
+        emoji.innerText = emojiList[Math.floor(Math.random() * emojiList.length)];
+        emoji.style.left = Math.random() * 100 + "vw";
+        emoji.style.animationDuration = (Math.random() * 4 + 4) + "s";
+        document.body.appendChild(emoji);
+
+        setTimeout(() => {
+          emoji.remove();
+        }, 10000);
+      }, 1500);
+    }
+
+    // createEmojiRain();
+
+    document.addEventListener("keydown", function (e) {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && e.key === "I") ||
+        (e.ctrlKey && e.shiftKey && e.key === "J") ||
+        (e.ctrlKey && e.key === "U") ||
+        (e.ctrlKey && e.shiftKey && e.key === "C")
+      ) {
+        e.preventDefault();
+        alert("Eh eh, jangan curi ya! 😜");
+      }
+    });
+
+    //showNextMessage();
+  </script>
+</body>
+</html>
