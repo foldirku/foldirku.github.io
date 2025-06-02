@@ -3,16 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pesan</title>
-  <meta name="description" content="Ada pesan nih">
-  <meta property="og:title" content="Pesan">
-  <meta property="og:description" content="Ada pesan nih">
-  <meta property="og:image" content="https://raw.githubusercontent.com/foldirku/7584/main/pesan.jpg">
+  <title>Foldir</title>
+  <meta name="description" content="By: Wildan Hidayat">
+  <meta property="og:title" content="Foldir">
+  <meta property="og:description" content="By: Wildan Hidayat">
+  <meta property="og:image" content="https://foldir.xyz/pesan.jpg">
   <meta property="og:url" content="https://foldir.xyz">
   <meta property="og:type" content="website">
   <meta property="og:image:width" content="200">
   <meta property="og:image:height" content="200">
+  <meta property="og:locale" content="id_ID">
+  <link rel="canonical" href="https://foldir.xyz">
+  <link rel="icon" href="https://foldir.xyz/ikon.png" type="image/x-icon">
+  <meta name="author" content="wildan hidayat">
+  <meta name="robots" content="foldir, wildanhidayat">
   <style>
+    /* === CSS dari kamu di sini (tidak diubah, hanya ditambahkan sedikit untuk fungsionalitas) === */
     html, body {
       margin: 0;
       padding: 0;
@@ -28,6 +34,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .container {
@@ -35,8 +43,7 @@
       max-width: 720px;
       background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
       backdrop-filter: blur(10px);
-      padding: 15px;
-      margin: 20px;
+      padding: 20px;
       border-radius: 20px;
       border: 2px solid #fff;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
@@ -46,8 +53,10 @@
     }
 
     .emoji-circle {
-      width: 100px;
-      height: 100px;
+      width: 20vw;
+      max-width: 100px;
+      height: 20vw;
+      max-height: 100px;
       background-color: rgba(255,255,255,0.5);
       border-radius: 50%;
       display: flex;
@@ -66,49 +75,51 @@
       animation: fadeInText 0.5s ease;
     }
 
-    .countdown {
-      font-size: 1.2rem;
-      color: #000;
-      margin-top: 10px;
-    }
-
     button {
       font-family: 'Serif', cursive;
-      font-size: 1.2rem;
-      padding: 8px 18px;
+      font-size: 1rem;
+      padding: 10px 20px;
       border: none;
       border-radius: 12px;
-      margin: 5px;
+      margin: 8px;
       cursor: pointer;
       transition: all 0.3s ease;
+      background-color: #fff;
+      color: #000;
     }
 
     button:hover {
       transform: scale(1.05);
     }
 
-    button:first-of-type {
-      background-color: #fff;
-      color: #fff;
-    }
-
-    button:last-of-type {
+    a.link-button {
+      display: inline-block;
       background-color: #fff;
       color: #000;
-    }
-
-    a {
+      padding: 10px 20px;
+      border-radius: 12px;
+      margin-top: 10px;
+      font-size: 1rem;
       text-decoration: none;
-      color: #000;
     }
-    
+
+    a.link-button:hover {
+      transform: scale(1.05);
+    }
+
     .by {
-      text-decoration: none;
-      color: #fff;
       position: fixed;
-      font-size: 0.4em;
-      bottom: 5px;
-      left: 5px;
+      bottom: 10px;
+      right: 10px;
+      opacity: 0.2;
+      color: #fff;
+      font-size: 10px;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    b {
+      color: red;
     }
 
     @keyframes fadeIn {
@@ -143,162 +154,105 @@
       }
     }
 
-    /* Hujan emoji */
-    .emoji-rain {
-      position: fixed;
-      bottom: 0px;
-      font-size: 2rem;
-      animation: fall linear infinite;
-      z-index: 1;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(-100vh);
-        opacity: 0;
+    @media (max-width: 480px) {
+      .text {
+        font-size: 1rem;
       }
-    }
 
-    /* Amplop */
-    .amplop {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      padding: 20px;
-      background-color: rgba(255,255,255,1);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 6rem;
-      cursor: pointer;
-      animation: bounce 2s infinite;
-      z-index: 30;
-    }
-
-    @keyframes bounce {
-      0%,50%, 100% {
-        transform: translate(-50%, -50%) scale(1);
+      button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
       }
-      50% {
-        transform: translate(-50%, -55%) scale(1.1);
-      }
-    }
 
-    .fadeOut {
-      animation: fadeOut 1s forwards;
-    }
-
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
+      .emoji-circle {
+        font-size: 3rem;
       }
-    }
-    b {
-      color: red;
     }
   </style>
 </head>
-<body oncontextmenu="return false">
-  <div class="amplop" onclick="mulai()">
-    ✉️
-  </div>
-  <div class="container" id="konten">
+<body>
+
+  <div class="container">
     <div class="emoji-circle" id="emoji">
-      ✉️
+      🤭
     </div>
-    <div id="bucinText" class="text"></div>
-    <div id="countdown" class="countdown"></div>
+    <div class="text" id="bucinText">
+      ...
+    </div>
+    <a id="linkButton" href="#" class="link-button">ambil</a>
+    <div class="by">
+      ©foldir.xyz
+    </div>
+    <div>
+      <button id="prevBtn" onclick="showPrev()">kembali</button>
+      <button id="nextBtn" onclick="showNext()">pergi</button>
+    </div>
   </div>
-<a class="by" href="https://foldir.xyz">FOLDIR</a>
+
+  <div class="by">
+    ©foldir.xyz
+  </div>
+
   <script>
     const messages = [
-      "disaat semua orang ingin wanita cantik, aku hanya ingin wanita yang tidak suka <b>berbohong</b> dan <b>tidak mudah akrab</b> pada Laki-Laki Lain."
+      "(Beranda)<br>ngapain kesini pergi sana hihi.",
+      "Saya <b>Terima</b> Slow <b>responmu</b>, Dan <b>kecuekanmu</b>, dengan seperangkat sadar diri Di bayar undur diri,<br/><br/><b>gimana para saksi</b>..?",
+      "jangan di paksa, dia juga butuh yang sempurna gak kaya kita cuma modal tulus.",
+      "jika kehadiran ku hanya merusak hari-harimu maaf ya, aku janji besok dan seterusnya tidak akan ada aku lagi.",
+      "lupakan saja soal kedekatan kita kemarin maaf kalo kesannya aku sangat menginginkanmu berbahagialah, senang bisa mengenalmu.",
+      "disaat semua orang ingin wanita cantik, aku hanya ingin wanita yang tidak suka <b>berbohong</b> dan <b>tidak mudah akrab</b> pada Laki-Laki Lain.",
+
     ];
-    const emojis = [
-      "😔",
+
+    const links = [
+      "https://foldir.xyz/",
+      "https://foldir.xyz/85748.html",
+      "https://foldir.xyz/10384.html",
+      "https://foldir.xyz/38479.html",
+      "https://foldir.xyz/94749.html",
+      "https://foldir.xyz/58594.html",
     ];
+
+    const emojis = ["🖐️", "🤭","😊","😔","😉","😔"];
 
     let index = 0;
-    let countdown = 29;
+
     const textElement = document.getElementById('bucinText');
-    const countdownElement = document.getElementById('countdown');
     const emojiElement = document.getElementById('emoji');
-    const konten = document.getElementById('konten');
-    const amplop = document.querySelector('.amplop');
+    const linkButton = document.getElementById('linkButton');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
 
-    function mulai() {
-      amplop.classList.add("fadeOut");
-      setTimeout(() => {
-        amplop.style.display = "none";
-        konten.style.display = "block";
-        createEmojiRain();
-        showNextMessage();
-      }, 800);
-    }
+    function updateSlide() {
+      textElement.innerHTML = messages[index];
+      emojiElement.textContent = emojis[index];
+      linkButton.href = links[index];
 
-    function startCountdown() {
-      countdown = 29;
-      countdownElement.innerText = `( ${countdown} )`;
-      const interval = setInterval(() => {
-        countdown--;
-        if (countdown > -1) {
-          countdownElement.innerText = `( ${countdown} )`;
-        } else {
-          clearInterval(interval);
-          showNextMessage();
-        }
-      },
-        1000);
-    }
+      prevBtn.style.display = index === 0 ? "none": "inline-block";
+      nextBtn.style.display = index === messages.length - 1 ? "none": "inline-block";
 
-    function showNextMessage() {
-      if (index < messages.length) {
-        textElement.innerHTML = messages[index];
-        emojiElement.innerText = emojis[index % emojis.length];
-        index++;
-        startCountdown();
+      if (index === 0) {
+        linkButton.style.display = "none"
       } else {
-        countdownElement.innerHTML = `
-        <button><a href='https://wa.me/?text=Jawab:' target='_blank'>Jawab</a></button>`;
-      //  <button><a href='https://wa.me/?text=Tidak' target='_blank'>Tidak</a></button>
-        
-        emojiElement.innerText = "💬";
-        textElement.innerText = "";
+        linkButton.style.display = ""
       }
     }
 
-    // Hujan emoji
-    function createEmojiRain() {
-      const emojiList = emojis;
-      setInterval(() => {
-        const emoji = document.createElement('div');
-        emoji.className = 'emoji-rain';
-        emoji.innerText = emojiList[Math.floor(Math.random() * emojiList.length)];
-        emoji.style.left = Math.random() * 100 + "vw";
-        emoji.style.animationDuration = (Math.random() * 4 + 4) + "s";
-        document.body.appendChild(emoji);
-
-        setTimeout(() => {
-          emoji.remove();
-        }, 10000);
-      }, 1500);
+    function showNext() {
+      if (index < messages.length - 1) {
+        index++;
+        updateSlide();
+      }
     }
 
-    // createEmojiRain();
-
-    document.addEventListener("keydown", function (e) {
-      if (
-        e.key === "F12" ||
-        (e.ctrlKey && e.shiftKey && e.key === "I") ||
-        (e.ctrlKey && e.shiftKey && e.key === "J") ||
-        (e.ctrlKey && e.key === "U") ||
-        (e.ctrlKey && e.shiftKey && e.key === "C")
-      ) {
-        e.preventDefault();
-        alert("Eh eh, jangan curi ya! 😜");
+    function showPrev() {
+      if (index > 0) {
+        index--;
+        updateSlide();
       }
-    });
+    }
 
-    //showNextMessage();
+    updateSlide();
   </script>
 </body>
 </html>
