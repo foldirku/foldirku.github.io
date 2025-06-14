@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Foldir</title>
-  <meta name="description" content="By: Wildan Hidayat">
+  <meta name="description" content="© Wildan Hidayat | foldir.xyz">
   <meta property="og:title" content="Foldir">
-  <meta property="og:description" content="By: Wildan Hidayat">
+  <meta property="og:description" content="© Wildan Hidayat | foldir.xyz">
   <meta property="og:image" content="https://foldir.xyz/pesan.jpg">
   <meta property="og:url" content="https://foldir.xyz">
   <meta property="og:type" content="website">
@@ -18,242 +18,211 @@
   <meta name="author" content="wildan hidayat">
   <meta name="robots" content="foldir, wildanhidayat">
   <style>
-    /* === CSS dari kamu di sini (tidak diubah, hanya ditambahkan sedikit untuk fungsionalitas) === */
-    html, body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      height: 100%;
-      font-family: 'Serif', cursive;
-      overflow: hidden;
-      background: linear-gradient(135deg, #666666, #333333);
-      user-select: none;
-      z-index: 0;
     }
 
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #333;
     }
 
-    .container {
-      width: 90%;
-      max-width: 720px;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      border-radius: 20px;
-      border: 2px solid #fff;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    header {
+      background-color: #1e90ff;
+      color: white;
+      padding: 1rem;
       text-align: center;
-      animation: fadeIn 1s ease;
-      z-index: 2;
     }
 
-    .emoji-circle {
-      width: 20vw;
-      max-width: 100px;
-      height: 20vw;
-      max-height: 100px;
-      background-color: rgba(255,255,255,0.5);
-      border-radius: 50%;
+    header a {
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .product {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+    }
+
+    .product:hover {
+      transform: scale(1.02);
+    }
+
+    .product-bg {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background-size: 100% 100%;
+      background-position: center;
+    }
+
+    .product-info {
+      padding: 1rem;
+      flex-grow: 1;
+    }
+
+    .product-info h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .product-info p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .product a {
+      background: #1e90ff;
+      color: white;
+      text-align: center;
+      padding: 0.75rem;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      transition: background 0.3s;
+    }
+
+    .product a:hover {
+      background: #0f7ae5;
+    }
+
+    .pagination {
+      text-align: center;
+      margin: 1rem;
       display: flex;
       justify-content: center;
-      align-items: center;
-      font-size: 4rem;
-      margin: 0 auto 20px auto;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-      animation: pulse 2s infinite;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
-    .text {
-      font-size: 1.2rem;
-      color: #fff;
-      margin-bottom: 20px;
-      animation: fadeInText 0.5s ease;
-    }
-
-    button {
-      font-family: 'Serif', cursive;
-      font-size: 1rem;
-      padding: 10px 20px;
+    .pagination button {
+      padding: 0.5rem 1rem;
       border: none;
-      border-radius: 12px;
-      margin: 8px;
+      background: #1e90ff;
+      color: white;
       cursor: pointer;
-      transition: all 0.3s ease;
-      background-color: #fff;
-      color: #000;
-    }
-
-    button:hover {
-      transform: scale(1.05);
-    }
-
-    a.link-button {
-      display: inline-block;
-      background-color: #fff;
-      color: #000;
-      padding: 10px 20px;
-      border-radius: 12px;
-      margin-top: 10px;
+      border-radius: 8px;
       font-size: 1rem;
-      text-decoration: none;
     }
 
-    a.link-button:hover {
-      transform: scale(1.05);
+    .pagination button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
     }
 
-    .by {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      opacity: 0.2;
-      color: #fff;
-      font-size: 10px;
-      z-index: 9999;
-      pointer-events: none;
-    }
-
-    b {
-      color: red;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInText {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.1);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .text {
-        font-size: 1rem;
-      }
-
-      button {
-        font-size: 0.9rem;
-        padding: 8px 16px;
-      }
-
-      .emoji-circle {
-        font-size: 3rem;
-      }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Foldir XYZ</h1>
+    <p>
+      Jangan lupa di bagikan terus agar makin berkembang.
+    </p>
+    <a href="https://whatsapp.com/channel/0029Vb21bwQ6RGJ8JVCv9w3z">Saluran Wa</a> -
+    <a href="https://x.com/foldir_xyz">Twitter</a>
+  </header>
 
-  <div class="container">
-    <div class="emoji-circle" id="emoji">
-      🤭
-    </div>
-    <div class="text" id="bucinText">
-      ...
-    </div>
-    <a id="linkButton" href="#" class="link-button">ambil</a>
-    <div class="by">
-      ©foldir.xyz
-    </div>
-    <div>
-      <button id="prevBtn" onclick="showPrev()">kembali</button>
-      <button id="nextBtn" onclick="showNext()">pergi</button>
-    </div>
+  <div class="container" id="productContainer"></div>
+
+  <div class="pagination">
+    <button id="prevBtn">Sebelumnya</button>
+    <button id="nextBtn">Berikutnya</button>
   </div>
 
-  <div class="by">
-    ©foldir.xyz
-  </div>
+  <footer>
+    © 2025 - foldir.xyz
+  </footer>
 
   <script>
-    const messages = [
-      "(Beranda)<br>ngapain kesini pergi sana hihi.",
-      "Saya <b>Terima</b> Slow <b>responmu</b>, Dan <b>kecuekanmu</b>, dengan seperangkat sadar diri Di bayar undur diri,<br/><br/><b>gimana para saksi</b>..?",
-      "jangan di paksa, dia juga butuh yang sempurna gak kaya kita cuma modal tulus.",
-      "jika kehadiran ku hanya merusak hari-harimu maaf ya, aku janji besok dan seterusnya tidak akan ada aku lagi.",
-      "lupakan saja soal kedekatan kita kemarin maaf kalo kesannya aku sangat menginginkanmu berbahagialah, senang bisa mengenalmu.",
-      "disaat semua orang ingin wanita cantik, aku hanya ingin wanita yang tidak suka <b>berbohong</b> dan <b>tidak mudah akrab</b> pada Laki-Laki Lain.",
-      "Yaa Allah tolong jadikan aku sebagai Perantara rezeki untuk orang-orang Yang aku sayang, sebab sakit sekali Rasanya ketika mereka membutuhkan Sesuatu tapi aku tidak bisa Memberikannya.",
+    const products = [{
+      title: "Titik pasrah",
+      desc: "Titik pasrah seseorang adalah pas mereka bilang, ya udh mau gimana lagi",
+      img: "https://foldir.xyz/64839.webp",
+      link: "https://foldir.xyz/titikpasrah"
+    },
+      {
+        title: "Untuk apa kata maaf",
+        desc: "Lalu, untuk apa kata maaf jika kamu mengulang kesalahan yang sama lagi",
+        img: "https://foldir.xyz/80749.webp",
+        link: "https://foldir.xyz/untukapakatamaaf"
+      },
+    {
+        title: "Dengan satu orang",
+        desc: "Sudah bukan zamannya lagi ganti ganti pasangan, dewasa lah dengan satu orang",
+        img: "https://foldir.xyz/04743.webp",
+        link: "https://foldir.xyz/dengansatuorang"
+      },
     ];
 
-    const links = [
-      "https://foldir.xyz/",
-      "https://foldir.xyz/85748.html",
-      "https://foldir.xyz/10384.html",
-      "https://foldir.xyz/38479.html",
-      "https://foldir.xyz/94749.html",
-      "https://foldir.xyz/58594.html",
-      "https://foldir.xyz/78384.html",
-    ];
+    const itemsPerPage = 6;
+    let currentPage = 1;
 
-    const emojis = ["🖐️", "🤭","😊","😔","😉","😔","🤲"];
+    function displayProducts() {
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const visibleProducts = products.slice(start, end);
 
-    let index = 0;
+      const container = document.getElementById("productContainer");
+      container.innerHTML = '';
 
-    const textElement = document.getElementById('bucinText');
-    const emojiElement = document.getElementById('emoji');
-    const linkButton = document.getElementById('linkButton');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+      visibleProducts.forEach(product => {
+        container.innerHTML += `
+        <div class="product">
+        <div class="product-bg" style="background-image: url('${product.img}');"></div>
+        <div class="product-info">
+        <h3>${product.title}</h3>
+        <p>${product.desc}</p>
+        </div>
+        <a href="${product.link}" target="_blank">Bagikan</a>
+        </div>
+        `;
+      });
 
-    function updateSlide() {
-      textElement.innerHTML = messages[index];
-      emojiElement.textContent = emojis[index];
-      linkButton.href = links[index];
-
-      prevBtn.style.display = index === 0 ? "none": "inline-block";
-      nextBtn.style.display = index === messages.length - 1 ? "none": "inline-block";
-
-      if (index === 0) {
-        linkButton.style.display = "none"
-      } else {
-        linkButton.style.display = ""
-      }
+      document.getElementById("prevBtn").disabled = currentPage === 1;
+      document.getElementById("nextBtn").disabled = end >= products.length;
     }
 
-    function showNext() {
-      if (index < messages.length - 1) {
-        index++;
-        updateSlide();
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        displayProducts();
       }
-    }
+    });
 
-    function showPrev() {
-      if (index > 0) {
-        index--;
-        updateSlide();
-      }
-    }
+    document.getElementById("nextBtn").addEventListener("click",
+      () => {
+        if (currentPage * itemsPerPage < products.length) {
+          currentPage++;
+          displayProducts();
+        }
+      });
 
-    updateSlide();
+    displayProducts();
   </script>
 </body>
-</html>
+  </html>
