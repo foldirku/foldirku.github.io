@@ -20,19 +20,19 @@ jobs:
           
           base_url="https://www.namadomainkamu.com"  # ganti dengan domain kamu sendiri
 
-for file in $(find . -name "*.html" -not -path "./.*"); do
-  clean_path=$(echo "$file" | sed 's|^\./||')
-  url_path=$(echo "$clean_path" | sed 's/\.html$//' | sed 's/index$//')
-  url="${base_url}/${url_path}"
-  url=$(echo "$url" | sed 's|//|/|g' | sed 's|:/|://|')  # perbaiki double slash
-  lastmod=$(date -u +"%Y-%m-%d")
-  echo "  <url>" >> sitemap.xml
-  echo "    <loc>${url}</loc>" >> sitemap.xml
-  echo "    <lastmod>${lastmod}</lastmod>" >> sitemap.xml
-  echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
-  echo "    <priority>0.5</priority>" >> sitemap.xml
-  echo "  </url>" >> sitemap.xml
-done
+          for file in $(find . -name "*.html" -not -path "./.*"); do
+            clean_path=$(echo "$file" | sed 's|^\./||')
+            url_path=$(echo "$clean_path" | sed 's/\.html$//' | sed 's/index$//')
+            url="${base_url}/${url_path}"
+            url=$(echo "$url" | sed 's|//|/|g' | sed 's|:/|://|')  # perbaiki double slash
+            lastmod=$(date -u +"%Y-%m-%d")
+            echo "  <url>" >> sitemap.xml
+            echo "    <loc>${url}</loc>" >> sitemap.xml
+            echo "    <lastmod>${lastmod}</lastmod>" >> sitemap.xml
+            echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
+            echo "    <priority>0.5</priority>" >> sitemap.xml
+            echo "  </url>" >> sitemap.xml
+          done
 
           echo '</urlset>' >> sitemap.xml
 
