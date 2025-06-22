@@ -3,7 +3,7 @@ name: Generate Sitemap
 on:
   push:
     branches:
-      - main  # Ganti dengan nama branch kamu jika bukan 'main'
+      - main
 
 jobs:
   generate:
@@ -12,9 +12,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Show current directory
-        run: ls -R
 
       - name: Generate sitemap.xml
         run: |
@@ -39,8 +36,8 @@ jobs:
 
       - name: Commit and push sitemap.xml
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
           git add sitemap.xml
-          git commit -m "update sitemap.xml" || echo "No changes"
-          git push
+          git commit -m "Auto-update sitemap.xml" || echo "No changes"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
