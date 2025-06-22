@@ -3,26 +3,29 @@ name: Generate Sitemap
 on:
   push:
     branches:
-      - main  # Jalankan hanya saat ada push ke branch 'main'
+      - main
 
 jobs:
-  build:
+  generate-sitemap:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repo
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
       - name: Install Sitemap Generator
         run: npm install -g sitemap-generator-cli
 
-      - name: Generate Sitemap
-        run: sitemap-generator https://foldirku.github.io/7584./sitemap.xml
-
-      - name: Commit and Push Sitemap
+      - name: Generate sitemap.xml
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
+          npx sitemap-generator-cli https://foldirku.github.io/7584 \
+            --output sitemap.xml \
+            --strip-querystring
+
+      - name: Commit sitemap.xml
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
           git add sitemap.xml
-          git commit -m "🔄 Update sitemap automatically"
+          git commit -m "🔄 Update sitemap.xml"
           git push
