@@ -20,7 +20,7 @@ jobs:
           
           base_url="https://foldir.xyz"
 
-          for file in $(find . -name "*.html" -not -path "./.*"); do
+          for file in $(find . -name "*" -not -path "./.*"); do
             clean_path=$(echo "$file" | sed 's|^\./||')
             url="${base_url}/${clean_path}"
             lastmod=$(date -u +"%Y-%m-%d")
