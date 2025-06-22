@@ -36,8 +36,8 @@ jobs:
 
       - name: Commit and push sitemap.xml
         run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
-          git add sitemap.xml
-          git commit -m "Auto-update sitemap.xml" || echo "No changes"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
+             git config --global user.name github-actions
+             git config --global user.email github-actions@github.com
+             git add sitemap.xml
+             git commit -m "Auto-update sitemap.xml" || echo "No changes"
+             git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
