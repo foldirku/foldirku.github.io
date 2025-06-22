@@ -17,29 +17,238 @@
   <link rel="icon" href="https://foldir.xyz/ikon.png" type="image/x-icon">
   <meta name="author" content="wildan hidayat">
   <meta name="robots" content="foldir, wildanhidayat">
-  <link href="https://foldir.xyz/28992.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+:root {
+    --bg: #f5f7fa;
+    --text: #1a1a1a;
+    --accent: #007bff;
+    --card: #fff;
+  }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 20px 10px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--accent);
+      margin: 0;
+    }
+
+    .container {
+      flex: 1;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      width: 100%;
+    }
+
+    #search {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 24px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    li {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      transition: transform 0.2s ease;
+    }
+
+    li:hover {
+      transform: translateY(-2px);
+    }
+
+    li h3 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+    }
+
+    li p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--accent);
+      word-break: break-word;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #999;
+      padding: 20px;
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      #search {
+        font-size: 0.95rem;
+        padding: 10px 14px;
+      }
+
+      li {
+        padding: 14px;
+      }
+
+      li p {
+        font-size: 0.85rem;
+      }
+    }
+    .thumb-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .thumb-wrapper::after {
+      content: "foldir.xyz";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(255, 255, 255, 0.35);
+      font-weight: 600;
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      text-align: center;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Foldir XYZ</h1>
-    <p>
-      Jangan lupa di bagikan terus agar makin berkembang.
-    </p>
-    <a href="https://whatsapp.com/channel/0029Vb21bwQ6RGJ8JVCv9w3z">Saluran Wa</a> -
-    <a href="https://x.com/foldir_xyz">Twitter</a>
+    <h1>FOLDIR XYZ</h1>
   </header>
 
-  <div class="container" id="productContainer"></div>
-
-  <div class="pagination">
-    <button id="prevBtn">Sebelumnya</button>
-    <button id="nextBtn">Berikutnya</button>
+  <div class="container">
+    <input type="text" id="search" placeholder="Cari halaman...">
+    <ul id="sitemap-list">
+      <li>Memuat halaman...</li>
+    </ul>
+    <button id="loadMore" style="display:none; margin: 2rem auto; padding: 10px 20px; font-size: 1rem; border-radius: 8px; background: var(--accent); color: white; border: none; cursor: pointer;">
+      Lihat lebih banyak
+    </button>
   </div>
 
   <footer>
-    © 2025 - foldir.xyz
+    &copy; 2025 - foldir.xyz
   </footer>
 
-  <script src="https://foldir.xyz/74932.js"></script>
+  <script>
+    const list = document.getElementById("sitemap-list");
+    const btn = document.getElementById("loadMore");
+    const fallbackImg = "https://via.placeholder.com/600x338?text=HTML";
+
+    let allUrls = [];
+    let currentIndex = 0;
+    const itemsPerPage = 6;
+
+    function renderBatch() {
+      const batch = allUrls.slice(currentIndex, currentIndex + itemsPerPage);
+
+      batch.forEach(href => {
+        fetch(href)
+        .then(r => r.text())
+        .then(html => {
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const title = doc.querySelector("title")?.textContent || href;
+          const desc = doc.querySelector('meta[name="description"]')?.getAttribute("content") || "Tidak ada deskripsi.";
+          const img = doc.querySelector('meta[property="og:image"]')?.getAttribute("content") || fallbackImg;
+
+          const li = document.createElement("li");
+          li.innerHTML = `
+          <div class="thumb-wrapper" style="background-image: url('${img}');"></div>
+          <div class="info">
+          <h3><a href="${href}" target="_blank">${title}</a></h3>
+          <p>${desc}</p>
+          </div>
+          `;
+          list.appendChild(li);
+        })
+        .catch(() => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+          <div class="thumb-wrapper" style="background-image: url('${fallbackImg}');"></div>
+          <div class="info">
+          <h3><a href="${href}" target="_blank">${href}</a></h3>
+          <p>Tidak dapat mengambil deskripsi.</p>
+          </div>
+          `;
+          list.appendChild(li);
+        });
+      });
+
+      currentIndex += itemsPerPage;
+
+      if (currentIndex >= allUrls.length) {
+        btn.style.display = "none";
+      } else {
+        btn.style.display = "block";
+      }
+    }
+
+    fetch("https://foldir.xyz/sitemap.xml")
+    .then(res => res.text())
+    .then(str => new DOMParser().parseFromString(str, "text/xml"))
+    .then(data => {
+      const urls = data.querySelectorAll("url > loc");
+      list.innerHTML = "";
+      allUrls = Array.from(urls).map(loc => loc.textContent);
+      renderBatch(); // Tampilkan 6 pertama
+    });
+
+    btn.addEventListener("click", renderBatch);
+
+    // Optional: Fitur pencarian tetap bisa digunakan
+    document.getElementById("search").addEventListener("input", function () {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll("#sitemap-list li").forEach(li => {
+        li.style.display = li.textContent.toLowerCase().includes(q) ? "": "none";
+      });
+    });
+  </script>
 </body>
 </html>
