@@ -18,7 +18,7 @@ jobs:
           echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
           echo '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
           
-          base_url="https://foldirku.github.io/7584"
+          base_url="https://foldir.xyz"
 
           for file in $(find . -name "*.html" -not -path "./.*"); do
             clean_path=$(echo "$file" | sed 's|^\./||')
