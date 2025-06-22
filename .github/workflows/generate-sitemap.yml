@@ -17,15 +17,25 @@ jobs:
         run: |
           echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
           echo '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
-          
-          base_url="https://foldir.xyz"  # ganti dengan domain kamu sendiri
+
+          base_url="https://foldir.xyz"
 
           for file in $(find . -name "*.html" -not -path "./.*"); do
+            # Lewati file yang tidak ingin dimasukkan
+            case "$file" in
+              *404.html|*googled6582ad7947937b1.html|*index.html|*274925.html)
+                continue
+                ;;
+            esac
+
             clean_path=$(echo "$file" | sed 's|^\./||')
             url_path=$(echo "$clean_path" | sed 's/\.html$//' | sed 's/index$//')
             url="${base_url}/${url_path}"
-            url=$(echo "$url" | sed 's|//|/|g' | sed 's|:/|://|')  # perbaiki double slash
-            lastmod=$(date -u +"%Y-%m-%d")
+            url=$(echo "$url" | sed 's|//|/|g' | sed 's|:/|://|')
+
+            # Ambil tanggal terakhir file diubah (via Git)
+            lastmod=$(git log -1 --format="%ad" --date=short "$file" 2>/dev/null || date -u +"%Y-%m-%d")
+
             echo "  <url>" >> sitemap.xml
             echo "    <loc>${url}</loc>" >> sitemap.xml
             echo "    <lastmod>${lastmod}</lastmod>" >> sitemap.xml
@@ -38,8 +48,8 @@ jobs:
 
       - name: Commit and push sitemap.xml
         run: |
-             git config --global user.name github-actions
-             git config --global user.email github-actions@github.com
-             git add sitemap.xml
-             git commit -m "Auto-update sitemap.xml" || echo "No changes"
-             git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+          git add sitemap.xml
+          git commit -m "Auto-update sitemap.xml" || echo "No changes"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
