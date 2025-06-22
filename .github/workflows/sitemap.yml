@@ -17,14 +17,11 @@ jobs:
         run: npm install -g sitemap-generator-cli
 
       - name: Generate sitemap.xml
-        run: |
-          npx sitemap-generator-cli https://foldirku.github.io/7584 \
-            --output sitemap.xml \
+        run: npx sitemap-generator-cli https://foldirku.github.io/7584/--output sitemap.xml
             --strip-querystring
 
       - name: Commit sitemap.xml
-        run: |
-          git config --global user.name "github-actions"
+        run: git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add sitemap.xml
           git commit -m "🔄 Update sitemap.xml"
