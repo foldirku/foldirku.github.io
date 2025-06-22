@@ -3,24 +3,29 @@ name: Generate Sitemap
 on:
   push:
     branches:
-      - main
+      - main  # Ganti dengan nama branch kamu jika bukan 'main'
 
 jobs:
-  build:
+  generate:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Show current directory
+        run: ls -R
 
       - name: Generate sitemap.xml
         run: |
           echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
           echo '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
+          
+          base_url="https://foldirku.github.io/7584"
 
           for file in $(find . -name "*.html" -not -path "./.*"); do
-            cleanpath=$(echo "$file" | sed 's|^\./||')
-            url="https://foldirku.github.io/7584/${cleanpath}"
+            clean_path=$(echo "$file" | sed 's|^\./||')
+            url="${base_url}/${clean_path}"
             lastmod=$(date -u +"%Y-%m-%d")
             echo "  <url>" >> sitemap.xml
             echo "    <loc>${url}</loc>" >> sitemap.xml
@@ -32,10 +37,10 @@ jobs:
 
           echo '</urlset>' >> sitemap.xml
 
-      - name: Commit sitemap.xml
+      - name: Commit and push sitemap.xml
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
           git add sitemap.xml
-          git commit -m "Update sitemap.xml" || echo "No changes to commit"
+          git commit -m "Auto-update sitemap.xml" || echo "No changes"
           git push
