@@ -2,7 +2,7 @@ name: Autoblog Harian
 
 on:
   schedule:
-    - cron: "54 23 * * *" # Jam 10 pagi WIB setiap hari
+    - cron: "57 23 * * *" # Jam 10 pagi WIB setiap hari
   workflow_dispatch:
 
 jobs:
