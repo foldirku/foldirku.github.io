@@ -1,13 +1,12 @@
-const fs = require("fs");
-const { Configuration, OpenAIApi } = require("openai");
+import fs from "fs";
+import OpenAI from "openai";
 
 const today = new Date().toISOString().split("T")[0];
 const filename = `artikel-${today}.html`;
 
-const configuration = new Configuration({
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-const openai = new OpenAIApi(configuration);
 
 const tema = [
   "motivasi islami untuk anak muda",
@@ -19,8 +18,8 @@ const tema = [
 
 const randomTema = tema[Math.floor(Math.random() * tema.length)];
 
-(async () => {
-  const res = await openai.createChatCompletion({
+const run = async () => {
+  const completion = await openai.chat.completions.create({
     model: "gpt-4",
     messages: [
       {
@@ -30,6 +29,8 @@ const randomTema = tema[Math.floor(Math.random() * tema.length)];
     ],
   });
 
-  const htmlContent = res.data.choices[0].message.content;
+  const htmlContent = completion.choices[0].message.content;
   fs.writeFileSync(filename, htmlContent, "utf-8");
-})();
+};
+
+run();
