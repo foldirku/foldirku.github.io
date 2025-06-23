@@ -19,6 +19,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://foldir.xyz/test</loc>
+    <lastmod>2025-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://foldir.xyz/terlaludalam</loc>
     <lastmod>2025-06-23</lastmod>
     <changefreq>monthly</changefreq>
