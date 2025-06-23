@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>foldir.xyz - Artikel Harian</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; max-width: 700px; margin: auto; }
+    h1 { color: #007acc; }
+    .post { margin-bottom: 1.5rem; }
+    .post a { font-size: 1.1rem; color: #007acc; text-decoration: none; }
+    .post small { color: gray; display: block; margin-top: 0.2rem; }
+  </style>
+</head>
+<body>
+  <h1>Artikel Harian - foldir.xyz</h1>
+  <div id="posts">Memuat...</div>
+
+  <script>
+    fetch("https://api.github.com/repos/foldirku/7584/contents/")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("posts");
+        const files = data
+          .filter(f => f.name.startsWith("artikel-") && f.name.endsWith(".html"))
+          .sort((a, b) => b.name.localeCompare(a.name));
+        container.innerHTML = "";
+        files.forEach(file => {
+          const date = file.name.replace("artikel-", "").replace(".html", "");
+          container.innerHTML += `
+            <div class="post">
+              <a href="${file.name}">Artikel Tanggal ${date}</a>
+              <small>${date}</small>
+            </div>
+          `;
+        });
+      });
+  </script>
+</body>
+</html>
