@@ -23,7 +23,7 @@
         const container = document.getElementById("posts");
         const files = data
           .filter(f => f.name.startsWith("artikel-") && f.name.endsWith(".html"))
-          .sort((a, b) => b.name.localeCompare(a.name));
+          .sort((a, b) => b.name.localeCompare(a.name)).reverse();
         container.innerHTML = "";
         files.forEach(file => {
           const date = file.name.replace("artikel-", "").replace(".html", "");
