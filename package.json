@@ -1,5 +1,5 @@
 {
-  "name": "foldir-embed",
+  "name": "foldir-paginator",
   "version": "1.0.0",
   "dependencies": {
     "jsdom": "^24.0.0"
