@@ -1,0 +1,96 @@
+name: Generate Artikel Harian Otomatis
+
+on:
+  schedule:
+    - cron: "0 3 * * *"  # Setiap hari jam 10 pagi WIB
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Git
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+
+      - name: Install dependencies
+        run: |
+          npm install openai
+          sudo apt install jq -y
+
+      - name: Generate 1 artikel per hari
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          mkdir -p artikel
+
+          # Ambil semua topik ke array
+          readarray -t topik_array < data/topik.txt
+          first_topic="${topik_array[0]}"
+
+          if [ -z "$first_topic" ]; then
+            echo "Tidak ada topik tersisa di data/topik.txt"
+            exit 0
+          fi
+
+          # Slug = nama file html
+          slug=$(echo "$first_topic" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd 'a-z0-9\-')
+          output="artikel/$slug.html"
+
+          # Jika file sudah ada, lewati topik ini
+          if [ -f "$output" ]; then
+            echo "Topik sudah pernah dibuat: $output"
+            exit 0
+          fi
+
+          echo "Membuat artikel: $first_topic → $output"
+
+          # Generate artikel dengan OpenAI
+          konten=$(curl -s https://api.openai.com/v1/chat/completions \
+            -H "Authorization: Bearer $OPENAI_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d @- <<EOF | jq -r '.choices[0].message.content'
+{
+  "model": "gpt-4",
+  "messages": [
+    { "role": "system", "content": "Kamu adalah penulis artikel SEO Indonesia. Tulis artikel panjang dan informatif dalam format HTML minimal 800 kata." },
+    { "role": "user", "content": "Tulis artikel dengan topik: $first_topic" }
+  ]
+}
+EOF
+)
+
+          deskripsi=$(echo "$konten" | grep -o '<p>.*</p>' | head -n 1 | sed 's/<[^>]*>//g' | cut -c1-160)
+
+          # Bangun artikel HTML
+          cat > "$output" <<EOF
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>$first_topic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="$deskripsi">
+</head>
+<body>
+  <article>
+    <h1>$first_topic</h1>
+    $konten
+  </article>
+</body>
+</html>
+EOF
+
+          # Hapus topik pertama dari file
+          printf "%s\n" "${topik_array[@]:1}" > data/topik.txt
+
+      - name: Commit dan Push
+        run: |
+          git add artikel/ data/topik.txt
+          git commit -m "Generate artikel harian: $first_topic" || echo "Tidak ada perubahan"
+          git push origin main
