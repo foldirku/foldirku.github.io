@@ -1,7 +1,7 @@
 name: Auto Delete All Files
 
 on:
-  workflow_dispatch:  # Bisa dijalankan manual
+  workflow_dispatch:  # Bisa dijalankan manual dari GitHub
 
 jobs:
   delete:
@@ -13,13 +13,20 @@ jobs:
 
     - name: Delete all files except .github
       run: |
-        find . -mindepth 1 -maxdepth 1 ! -name '.github' -exec rm -rf {} +
-        echo "Semua file sudah dihapus, kecuali .github"
+        shopt -s extglob
+        rm -rf !( .github )
+        echo "Semua file telah dihapus kecuali .github"
 
     - name: Commit and push changes
       run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git add -A
-        git commit -m "Hapus semua isi repo secara otomatis" || echo "Tidak ada perubahan"
-        git push
+
+        # Cek apakah ada perubahan, baru commit
+        if git diff --cached --quiet; then
+          echo "Tidak ada perubahan, tidak perlu commit."
+        else
+          git commit -m "Hapus semua file secara otomatis kecuali .github"
+          git push origin HEAD
+        fi
