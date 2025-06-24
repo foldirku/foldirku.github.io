@@ -2,7 +2,7 @@ name: Generate Artikel Harian Otomatis
 
 on:
   schedule:
-    - cron: "0 3 * * *"  # Setiap hari jam 10 pagi WIB
+    - cron: "0 3 * * *"
   workflow_dispatch:
 
 jobs:
@@ -29,7 +29,6 @@ jobs:
         run: |
           mkdir -p artikel
 
-          # Ambil semua topik ke array
           readarray -t topik_array < data/topik.txt
           first_topic="${topik_array[0]}"
 
@@ -38,57 +37,49 @@ jobs:
             exit 0
           fi
 
-          # Slug = nama file html
           slug=$(echo "$first_topic" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd 'a-z0-9\-')
           output="artikel/$slug.html"
 
-          # Jika file sudah ada, lewati topik ini
           if [ -f "$output" ]; then
             echo "Topik sudah pernah dibuat: $output"
             exit 0
           fi
 
-          echo "Membuat artikel: $first_topic → $output"
-
-          # Panggil OpenAI API untuk generate artikel
           response=$(curl -s https://api.openai.com/v1/chat/completions \
             -H "Authorization: Bearer $OPENAI_API_KEY" \
             -H "Content-Type: application/json" \
-            -d @- <<EOF
+            -d "$(cat <<JSON
 {
-  "model": "gpt-4",
-  "messages": [
-    { "role": "system", "content": "Kamu adalah penulis artikel SEO dalam bahasa Indonesia. Tulis artikel HTML panjang dan informatif, minimal 800 kata." },
-    { "role": "user", "content": "Tulis artikel dengan topik: $first_topic" }
+  \"model\": \"gpt-4\",
+  \"messages\": [
+    { \"role\": \"system\", \"content\": \"Kamu adalah penulis artikel SEO dalam bahasa Indonesia. Tulis artikel HTML panjang dan informatif, minimal 800 kata.\" },
+    { \"role\": \"user\", \"content\": \"Tulis artikel dengan topik: $first_topic\" }
   ]
 }
-EOF
-          )
+JSON
+            )")
 
           konten=$(echo "$response" | jq -r '.choices[0].message.content')
 
           deskripsi=$(echo "$konten" | grep -o '<p>.*</p>' | head -n 1 | sed 's/<[^>]*>//g' | cut -c1-160)
 
-          cat > "$output" <<EOF
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <title>$first_topic</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="$deskripsi">
-</head>
-<body>
-  <article>
-    <h1>$first_topic</h1>
-    <img src="https://source.unsplash.com/800x400/?$slug" alt="$first_topic" style="width:100%;max-height:400px;object-fit:cover;border-radius:12px;margin-bottom:20px;">
-    $konten
-  </article>
-</body>
-</html>
-EOF
+          echo "<!DOCTYPE html>" > "$output"
+          echo "<html lang=\"id\">" >> "$output"
+          echo "<head>" >> "$output"
+          echo "  <meta charset=\"UTF-8\" />" >> "$output"
+          echo "  <title>$first_topic</title>" >> "$output"
+          echo "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />" >> "$output"
+          echo "  <meta name=\"description\" content=\"$deskripsi\">" >> "$output"
+          echo "</head>" >> "$output"
+          echo "<body>" >> "$output"
+          echo "  <article>" >> "$output"
+          echo "    <h1>$first_topic</h1>" >> "$output"
+          echo "    <img src=\"https://source.unsplash.com/800x400/?$slug\" alt=\"$first_topic\" style=\"width:100%;max-height:400px;object-fit:cover;border-radius:12px;margin-bottom:20px;\">" >> "$output"
+          echo "$konten" >> "$output"
+          echo "  </article>" >> "$output"
+          echo "</body>" >> "$output"
+          echo "</html>" >> "$output"
 
-          # Hapus topik pertama dari file
           printf "%s\n" "${topik_array[@]:1}" > data/topik.txt
 
       - name: Commit dan Push
