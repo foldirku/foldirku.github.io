@@ -4,43 +4,35 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
-  generate:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # penting agar git log bisa baca seluruh riwayat
+
+      - name: Setup Git
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
 
       - name: Generate sitemap.xml
         run: |
           echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
-          echo '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
+          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
 
-          base_url="https://foldir.xyz"
-
-          for file in $(find . -name "*.html" -not -path "./.*"); do
-            # Lewati file yang tidak ingin dimasukkan
-            case "$file" in
-              *404.html|*googled6582ad7947937b1.html|*index.html|*274925.html)
-                continue
-                ;;
-            esac
-
-            clean_path=$(echo "$file" | sed 's|^\./||')
-            url_path=$(echo "$clean_path" | sed 's/\.html$//' | sed 's/index$//')
-            url="${base_url}/${url_path}"
-            url=$(echo "$url" | sed 's|//|/|g' | sed 's|:/|://|')
-
-            # Ambil tanggal terakhir file diubah (via Git)
-            lastmod=$(git log -1 --format="%ad" --date=short "$file" 2>/dev/null || date -u +"%Y-%m-%d")
-
+          for file in $(find . -name "*.html" | sort); do
+            cleanpath="${file#./}"
+            url="https://foldir.xyz/${cleanpath}"
+            lastmod=$(git log -1 --format="%cI" "$file" 2>/dev/null || date -I)
             echo "  <url>" >> sitemap.xml
-            echo "    <loc>${url}</loc>" >> sitemap.xml
-            echo "    <lastmod>${lastmod}</lastmod>" >> sitemap.xml
-            echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
-            echo "    <priority>0.5</priority>" >> sitemap.xml
+            echo "    <loc>$url</loc>" >> sitemap.xml
+            echo "    <lastmod>$lastmod</lastmod>" >> sitemap.xml
             echo "  </url>" >> sitemap.xml
           done
 
@@ -48,8 +40,6 @@ jobs:
 
       - name: Commit and push sitemap.xml
         run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
           git add sitemap.xml
-          git commit -m "Auto-update sitemap.xml" || echo "No changes"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
+          git commit -m "Update sitemap.xml with accurate lastmod" || echo "No changes"
+          git push origin main
