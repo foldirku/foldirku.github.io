@@ -2,7 +2,7 @@ name: Generate Artikel Harian Otomatis
 
 on:
   schedule:
-    - cron: "0 3 * * *"
+    - cron: "59 8 * * *"
   workflow_dispatch:
 
 jobs:
@@ -49,14 +49,14 @@ jobs:
             -H "Authorization: Bearer $OPENAI_API_KEY" \
             -H "Content-Type: application/json" \
             -d "$(cat <<JSON
-{
-  \"model\": \"gpt-4\",
-  \"messages\": [
-    { \"role\": \"system\", \"content\": \"Kamu adalah penulis artikel SEO dalam bahasa Indonesia. Tulis artikel HTML panjang dan informatif, minimal 800 kata.\" },
-    { \"role\": \"user\", \"content\": \"Tulis artikel dengan topik: $first_topic\" }
-  ]
-}
-JSON
+            {
+               \"model\": \"gpt-4\",
+               \"messages\": [
+               { \"role\": \"system\", \"content\": \"Kamu adalah penulis artikel SEO dalam bahasa Indonesia. Tulis artikel HTML panjang dan informatif, minimal 800 kata.\" },
+               { \"role\": \"user\", \"content\": \"Tulis artikel dengan topik: $first_topic\" }
+            ]
+            }
+          JSON
             )")
 
           konten=$(echo "$response" | jq -r '.choices[0].message.content')
