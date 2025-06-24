@@ -2,7 +2,7 @@ name: Generate Artikel Harian Otomatis
 
 on:
   schedule:
-    - cron: "0 3 * * *"  # Setiap hari jam 10 pagi WIB
+    - cron: "38 8 * * *"  # Setiap hari jam 10 pagi WIB
   workflow_dispatch:
 
 jobs:
