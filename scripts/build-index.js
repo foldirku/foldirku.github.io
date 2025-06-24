@@ -46,11 +46,31 @@ function fetchHTML(url) {
     }
   }));
 
-  // Sisipkan hasil ke index.html
-  let indexHTML = fs.readFileSync("index.html", "utf8");
-  indexHTML = indexHTML.replace(
-    /<ul id="sitemap-list">[\s\S]*?<\/ul>/,
-    `<ul id="sitemap-list">\n${items.join("\n")}\n</ul>`
-  );
-  fs.writeFileSync("index.html", indexHTML);
+  const itemsPerPage = 6;
+  const totalPages = Math.ceil(items.length / itemsPerPage);
+
+  const template = fs.readFileSync("template.html", "utf8"); // berisi tampilan dasar
+
+  for (let i = 0; i < totalPages; i++) {
+    const start = i * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageItems = items.slice(start, end).join("\n");
+
+    const pageNum = i + 1;
+    const filename = pageNum === 1 ? "index.html" : `page${pageNum}.html`;
+
+    let content = template.replace("{{CONTENT}}", pageItems);
+
+    // Tambahkan navigasi halaman
+    let nav = '<div class="pagination" style="text-align:center; margin-top:2rem;">';
+    for (let j = 1; j <= totalPages; j++) {
+      const link = j === 1 ? "index.html" : `page${j}.html`;
+      nav += `<a href="${link}" style="margin:0 5px; ${j === pageNum ? 'font-weight:bold;' : ''}">${j}</a>`;
+    }
+    nav += '</div>';
+
+    content = content.replace("{{PAGINATION}}", nav);
+
+    fs.writeFileSync(filename, content);
+  }
 })();
