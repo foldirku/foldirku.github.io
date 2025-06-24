@@ -1,5 +1,6 @@
 const fs = require("fs");
 const https = require("https");
+const path = require("path");
 const { JSDOM } = require("jsdom");
 
 function fetchHTML(url) {
@@ -51,26 +52,34 @@ function fetchHTML(url) {
 
   const template = fs.readFileSync("index.html", "utf8"); // berisi tampilan dasar
 
-  for (let i = 0; i < totalPages; i++) {
-    const start = i * itemsPerPage;
-    const end = start + itemsPerPage;
-    const pageItems = items.slice(start, end).join("\n");
+for (let i = 0; i < totalPages; i++) {
+  const start = i * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageItems = items.slice(start, end).join("\n");
 
-    const pageNum = i + 1;
-    const filename = pageNum === 1 ? "index.html" : `page${pageNum}.html`;
+  const pageNum = i + 1;
+  let outputPath = "";
 
-    let content = template.replace("{{CONTENT}}", pageItems);
+  if (pageNum === 1) {
+    outputPath = "index.html"; // halaman pertama
+  } else {
+    const folder = `page${pageNum}`;
+    fs.mkdirSync(folder, { recursive: true });
+    outputPath = path.join(folder, "index.html");
+  }
 
-    // Tambahkan navigasi halaman
-    let nav = '<div class="pagination" style="text-align:center; margin-top:2rem;">';
-    for (let j = 1; j <= totalPages; j++) {
-      const link = j === 1 ? "index.html" : `page${j}.html`;
-      nav += `<a href="${link}" style="margin:0 5px; ${j === pageNum ? 'font-weight:bold;' : ''}">${j}</a>`;
-    }
-    nav += '</div>';
+  let content = template.replace("{{CONTENT}}", pageItems);
 
-    content = content.replace("{{PAGINATION}}", nav);
+  // Navigasi pagination
+  let nav = '<div class="pagination">';
+  for (let j = 1; j <= totalPages; j++) {
+    const link = j === 1 ? "/" : `/page${j}`;
+    nav += `<a href="${link}" ${j === pageNum ? 'style="font-weight:bold;"' : ''}>${j}</a>`;
+  }
+  nav += "</div>";
 
-    fs.writeFileSync(filename, content);
+  content = content.replace("{{PAGINATION}}", nav);
+
+  fs.writeFileSync(outputPath, content);
   }
 })();
