@@ -49,7 +49,7 @@ function fetchHTML(url) {
   const itemsPerPage = 6;
   const totalPages = Math.ceil(items.length / itemsPerPage);
 
-  const template = fs.readFileSync("template.html", "utf8"); // berisi tampilan dasar
+  const template = fs.readFileSync("index.html", "utf8"); // berisi tampilan dasar
 
   for (let i = 0; i < totalPages; i++) {
     const start = i * itemsPerPage;
