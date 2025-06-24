@@ -1,7 +1,7 @@
 # Site settings
-title:          Tale
-description:    "Minimal Jekyll theme for storytellers"
-baseurl:        "/"
+title:          foldir xyz
+description:    "foldir.xyz adalah blog pribadi."
+baseurl:        ""
 url:            "https://foldir.xyz"
 
 # Google Analytics
@@ -9,9 +9,9 @@ google_analytics: UA—XXXXXXXX-X
 
 # Author
 author:
-  name:         Chester How
-  url:          https://chester.how
-  email:        chesterhow@gmail.com
+  name:         wildan hidayat
+  url:          https://foldir.xyz
+  email:        https://foldir.xyz
 
 # Build settings
 markdown:       kramdown
