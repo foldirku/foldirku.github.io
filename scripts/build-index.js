@@ -12,12 +12,6 @@ function fetchHTML(url) {
   });
 }
 
-function getBetween(content, start, end) {
-  const s = content.indexOf(start);
-  const e = content.indexOf(end, s);
-  return content.slice(0, s) + start + "__REPLACEME__" + content.slice(e);
-}
-
 (async () => {
   const sitemap = await fetchHTML("https://foldir.xyz/sitemap.xml");
   const dom = new JSDOM(sitemap, { contentType: "text/xml" });
@@ -52,7 +46,7 @@ function getBetween(content, start, end) {
     }
   }));
 
-  // Sisipkan hasil ke dalam file index.html
+  // Sisipkan hasil ke index.html
   let indexHTML = fs.readFileSync("index.html", "utf8");
   indexHTML = indexHTML.replace(
     /<ul id="sitemap-list">[\s\S]*?<\/ul>/,
