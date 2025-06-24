@@ -1,6 +1,5 @@
 const fs = require("fs");
 const https = require("https");
-const path = require("path");
 const { JSDOM } = require("jsdom");
 
 function fetchHTML(url) {
@@ -28,7 +27,7 @@ function fetchHTML(url) {
       const image = doc.querySelector('meta[property="og:image"]')?.content || "https://via.placeholder.com/600x338?text=HTML";
 
       return `
-        <li>
+        <li class="post-item" style="display:none;">
           <div class="thumb-wrapper" style="background-image: url('${image}');"></div>
           <div class="info">
             <h3><a href="${url}" target="_blank">${title}</a></h3>
@@ -37,7 +36,7 @@ function fetchHTML(url) {
         </li>`;
     } catch {
       return `
-        <li>
+        <li class="post-item" style="display:none;">
           <div class="thumb-wrapper" style="background-image: url('https://via.placeholder.com/600x338?text=HTML');"></div>
           <div class="info">
             <h3><a href="${url}" target="_blank">${url}</a></h3>
@@ -47,39 +46,11 @@ function fetchHTML(url) {
     }
   }));
 
-  const itemsPerPage = 6;
-  const totalPages = Math.ceil(items.length / itemsPerPage);
-
-  const template = fs.readFileSync("template.html", "utf8"); // berisi tampilan dasar
-
-for (let i = 0; i < totalPages; i++) {
-  const start = i * itemsPerPage;
-  const end = start + itemsPerPage;
-  const pageItems = items.slice(start, end).join("\n");
-
-  const pageNum = i + 1;
-  let outputPath = "";
-
-  if (pageNum === 1) {
-    outputPath = "index.html"; // halaman pertama
-  } else {
-    const folder = `page${pageNum}`;
-    fs.mkdirSync(folder, { recursive: true });
-    outputPath = path.join(folder, "index.html");
-  }
-
-  let content = template.replace("{{CONTENT}}", pageItems);
-
-  // Navigasi pagination
-  let nav = '<div class="pagination">';
-  for (let j = 1; j <= totalPages; j++) {
-    const link = j === 1 ? "/" : `/page${j}`;
-    nav += `<a href="${link}" ${j === pageNum ? 'style="font-weight:bold;"' : ''}>${j}</a>`;
-  }
-  nav += "</div>";
-
-  content = content.replace("{{PAGINATION}}", nav);
-
-  fs.writeFileSync(outputPath, content);
-  }
+  // Sisipkan hasil ke index.html
+  let indexHTML = fs.readFileSync("index.html", "utf8");
+  indexHTML = indexHTML.replace(
+    /<ul id="sitemap-list"[\s\S]*?<\/ul>/,
+    `<ul id="sitemap-list" data-count="0">\n${items.join("\n")}\n</ul>`
+  );
+  fs.writeFileSync("index.html", indexHTML);
 })();
