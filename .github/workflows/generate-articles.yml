@@ -1,4 +1,4 @@
-name: Generate Artikel Harian Otomatis
+name: generate articles
 
 on:
   schedule:
