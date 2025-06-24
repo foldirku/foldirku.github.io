@@ -26,7 +26,7 @@ jobs:
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
 
           # Daftar file yang ingin dikecualikan
-          EXCLUDE=("dev.html" "draft.html" "test/testpage.html")
+          EXCLUDE=("googled6582ad7947937b1.html" "404.html" "274925.html" "index.html")
 
           for file in $(find . -name "*.html" | sort); do
             cleanpath="${file#./}"
