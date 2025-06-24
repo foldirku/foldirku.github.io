@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Foldir</title>
-  <meta name="description" content="© Wildan Hidayat | foldir.xyz">
-  <meta property="og:title" content="Foldir">
-  <meta property="og:description" content="© Wildan Hidayat | foldir.xyz">
-  <meta property="og:image" content="https://foldir.xyz/pesan.jpg">
-  <meta property="og:url" content="https://foldir.xyz">
-  <meta property="og:type" content="website">
-  <meta property="og:image:width" content="200">
-  <meta property="og:image:height" content="200">
-  <meta property="og:locale" content="id_ID">
-  <link rel="canonical" href="https://foldir.xyz">
-  <link rel="icon" href="https://foldir.xyz/ikon.png" type="image/x-icon">
-  <meta name="author" content="wildan hidayat">
-  <meta name="robots" content="foldir, wildanhidayat">
-  <meta name="google-adsense-account" content="ca-pub-7813186143216627">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="description" content="© Wildan Hidayat | foldir.xyz" />
+  <meta property="og:title" content="Foldir" />
+  <meta property="og:description" content="© Wildan Hidayat | foldir.xyz" />
+  <meta property="og:image" content="https://foldir.xyz/pesan.jpg" />
+  <meta property="og:url" content="https://foldir.xyz" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image:width" content="200" />
+  <meta property="og:image:height" content="200" />
+  <meta property="og:locale" content="id_ID" />
+  <link rel="canonical" href="https://foldir.xyz" />
+  <link rel="icon" href="https://foldir.xyz/ikon.png" type="image/x-icon" />
+  <meta name="author" content="wildan hidayat" />
+  <meta name="robots" content="foldir, wildanhidayat" />
+  <meta name="google-adsense-account" content="ca-pub-7813186143216627" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #f5f7fa;
@@ -60,6 +60,15 @@
       width: 100%;
     }
 
+    #search {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 24px;
+    }
+
     ul {
       list-style: none;
       padding: 0;
@@ -73,7 +82,7 @@
       background: var(--card);
       border-radius: 10px;
       padding: 16px;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
       transition: transform 0.2s ease;
     }
 
@@ -98,6 +107,13 @@
       word-break: break-word;
     }
 
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #999;
+      padding: 20px;
+    }
+
     .thumb-wrapper {
       position: relative;
       width: 100%;
@@ -119,44 +135,20 @@
       font-weight: 600;
       font-size: clamp(1.5rem, 4vw, 3rem);
       text-align: center;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
       pointer-events: none;
       user-select: none;
       white-space: nowrap;
     }
 
-    .pagination {
-      margin-top: 2rem;
-      text-align: center;
-    }
-
-    .pagination a {
-      display: inline-block;
-      margin: 0 6px;
-      padding: 6px 12px;
-      border-radius: 6px;
-      background: var(--card);
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    }
-
-    .pagination a:hover {
-      background: var(--accent);
-      color: white;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #999;
-      padding: 20px;
-    }
-
     @media (max-width: 480px) {
       header h1 {
         font-size: 1.5rem;
+      }
+
+      #search {
+        font-size: 0.95rem;
+        padding: 10px 14px;
       }
 
       li {
@@ -175,125 +167,46 @@
   </header>
 
   <div class="container">
+    <input type="text" id="search" placeholder="Cari halaman..." />
     <ul id="sitemap-list" data-count="0">
-
-        <li class="post-item" style="display:none;">
-          <div class="thumb-wrapper" style="background-image: url('https://foldir.xyz/38943.webp');"></div>
-          <div class="info">
-            <h3><a href="https://foldir.xyz/bagianterbaik" target="_blank">Pesan</a></h3>
-            <p>walaupun jika akhirnya tidak bisa memilikimu lagi, aku sangat senang bisa mengenalimu, kamu adalah part terbaik dalam ceritaku</p>
-          </div>
-        </li>
-
-        <li class="post-item" style="display:none;">
-          <div class="thumb-wrapper" style="background-image: url('https://foldir.xyz/54849.webp');"></div>
-          <div class="info">
-            <h3><a href="https://foldir.xyz/bukankarenaaku" target="_blank">Pesan</a></h3>
-            <p>dulu aku pernah melepas seseorang bukan karna perasaanku sudah habis. tapi karena laki laki lain membutuhkannya dan dia juga butuh laki laki itu.</p>
-          </div>
-        </li>
-
-        <li class="post-item" style="display:none;">
-          <div class="thumb-wrapper" style="background-image: url('https://foldir.xyz/74832.webp');"></div>
-          <div class="info">
-            <h3><a href="https://foldir.xyz/cahayailmu" target="_blank">Pesan</a></h3>
-            <p>ilmu itu cahaya, bisa jadi rasa sumpek dan gelisah itu berasa dari kegelapan hatimu yang butuh dengan cahaya ilmu.</p>
-          </div>
-        </li>
-
-        <li class="post-item" style="display:none;">
-          <div class="thumb-wrapper" style="background-image: url('https://foldir.xyz/74939.webp');"></div>
-          <div class="info">
-            <h3><a href="https://foldir.xyz/cintatakdibeli" target="_blank">Pesan</a></h3>
-            <p>ingat pesan bapak uang tidak bisa membeli cinta, tapi bekerjalah untuk menghidupi orang yang kamu cinta</p>
-          </div>
-        </li>
-
-        <li class="post-item" style="display:none;">
-          <div class="thumb-wrapper" style="background-image: url('https://foldir.xyz/04743.webp');"></div>
-          <div class="info">
-            <h3><a href="https://foldir.xyz/cukupsatu" target="_blank">Pesan</a></h3>
-            <p>Sudah bukan zamannya lagi ganti ganti pasangan, dewasa lah dengan satu orang</p>
-          </div>
-        </li>
-
-        <li class="post-item" style="display:none;">
-          <div class="thumb-wrapper" style="background-image: url('https://foldir.xyz/93753.webp');"></div>
-          <div class="info">
-            <h3><a href="https://foldir.xyz/hargasebuahcinta" target="_blank">Pesan</a></h3>
-            <p>mari berbicara fakta uang bisa membeli cinta wanita, tapi uang tidak bisa membeli cinta lelaki, cewe suka cowo kaya, tapi cowo takut dengan cewe kaya</p>
-          </div>
-        </li>
-
-        <li class="post-item" style="display:none;">
-          <div class="thumb-wrapper" style="background-image: url('https://foldir.xyz/80749.webp');"></div>
-          <div class="info">
-            <h3><a href="https://foldir.xyz/maafyangsama" target="_blank">Pesan</a></h3>
-            <p>Lalu, untuk apa kata maaf jika kamu mengulang kesalahan yang sama lagi</p>
-          </div>
-        </li>
-
-        <li class="post-item" style="display:none;">
-          <div class="thumb-wrapper" style="background-image: url('https://foldir.xyz/pesan.jpg');"></div>
-          <div class="info">
-            <h3><a href="https://foldir.xyz/page2" target="_blank">Foldir</a></h3>
-            <p>© Wildan Hidayat | foldir.xyz</p>
-          </div>
-        </li>
-
-        <li class="post-item" style="display:none;">
-          <div class="thumb-wrapper" style="background-image: url('https://foldir.xyz/74848.webp');"></div>
-          <div class="info">
-            <h3><a href="https://foldir.xyz/permudah" target="_blank">Pesan</a></h3>
-            <p>sederhana saja ya allah aku hanya ingin segalanya dipermudah, dilancarkan dan dikuatkan. takdir memang milik mu, tapi usaha dan doa milikku</p>
-          </div>
-        </li>
-
-        <li class="post-item" style="display:none;">
-          <div class="thumb-wrapper" style="background-image: url('https://foldir.xyz/62839.webp');"></div>
-          <div class="info">
-            <h3><a href="https://foldir.xyz/risikocinta" target="_blank">Pesan</a></h3>
-            <p>saat orang mengenal cinta, mereka mengambil risiko membawa kebencian, obito uchiha</p>
-          </div>
-        </li>
-
-        <li class="post-item" style="display:none;">
-          <div class="thumb-wrapper" style="background-image: url('https://foldir.xyz/53831.webp');"></div>
-          <div class="info">
-            <h3><a href="https://foldir.xyz/tanpaperasaan" target="_blank">Pesan</a></h3>
-            <p>suatu saat akan ada masanya, dimana aku melihat kamu tanpa perasaaan lagi</p>
-          </div>
-        </li>
-
-        <li class="post-item" style="display:none;">
-          <div class="thumb-wrapper" style="background-image: url('https://foldir.xyz/pesan.jpg');"></div>
-          <div class="info">
-            <h3><a href="https://foldir.xyz/template" target="_blank">Foldir</a></h3>
-            <p>© Wildan Hidayat | foldir.xyz</p>
-          </div>
-        </li>
-
-        <li class="post-item" style="display:none;">
-          <div class="thumb-wrapper" style="background-image: url('https://foldir.xyz/64939.webp');"></div>
-          <div class="info">
-            <h3><a href="https://foldir.xyz/terlaludalam" target="_blank">Pesan</a></h3>
-            <p>disaat aku menangis, disitu aku menyadari aku sudah mencintai orang secara berlebihan, lagi.</p>
-          </div>
-        </li>
-
-        <li class="post-item" style="display:none;">
-          <div class="thumb-wrapper" style="background-image: url('https://foldir.xyz/64839.webp');"></div>
-          <div class="info">
-            <h3><a href="https://foldir.xyz/titikpasrah" target="_blank">Pesan</a></h3>
-            <p>Titik pasrah seseorang adalah pas mereka bilang, ya udh mau gimana lagi</p>
-          </div>
-        </li>
-</ul>
-    <div class="pagination"><a href="/" style="font-weight:bold;">1</a><a href="/page2" >2</a><a href="/page3" >3</a></div>
+      <!-- ⬇️ BAGIAN INI AKAN DIISI OTOMATIS OLEH build-index.js -->
+      <!-- <li class="post-item" style="display:none;">...</li> -->
+    </ul>
   </div>
 
   <footer>
     &copy; 2025 - foldir.xyz
   </footer>
+
+  <script>
+    const list = document.getElementById("sitemap-list");
+    const posts = [...document.querySelectorAll(".post-item")];
+    let index = 0;
+    const perPage = 6;
+
+    function showNext() {
+      const slice = posts.slice(index, index + perPage);
+      slice.forEach(el => el.style.display = "");
+      index += perPage;
+    }
+
+    function onScroll() {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        showNext();
+      }
+    }
+
+    document.getElementById("search").addEventListener("input", function () {
+      const q = this.value.toLowerCase();
+      index = 0;
+      posts.forEach(el => {
+        const match = el.textContent.toLowerCase().includes(q);
+        el.style.display = match ? "" : "none";
+      });
+    });
+
+    showNext(); // tampilkan 6 pertama
+    window.addEventListener("scroll", onScroll);
+  </script>
 </body>
-    </html>
+</html>
