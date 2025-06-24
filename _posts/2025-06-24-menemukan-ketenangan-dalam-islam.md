@@ -3,10 +3,10 @@ layout: post
 title:  "Menemukan Ketenangan dalam Islam"
 author: "Wildan Hidayat"
 comments: true
-tags: islam
+tags: [Islam, Ketenangan, Iman]
 excerpt_separator: <!--more-->
-sticky: true
-hidden: true
+sticky: false
+hidden: false
 ---
 
 Dalam dunia yang semakin sibuk dan penuh tekanan ini, banyak orang merasa kehilangan arah dan kedamaian. Mereka mencari-cari ketenangan dalam berbagai hal: kekayaan, ketenaran, bahkan hiburan. Namun, seringkali semua itu hanya memberi ketenangan yang sementara. Islam datang sebagai petunjuk hidup yang sempurna, menghadirkan kedamaian sejati bagi hati dan jiwa.<!--more-->
