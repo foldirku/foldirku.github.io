@@ -2,7 +2,7 @@
 layout: post
 title:  "Menemukan Ketenangan dalam Islam"
 author: "Wildan Hidayat"
-comments: true
+comments: false
 tags: [Islam, Ketenangan, Iman]
 excerpt_separator: <!--more-->
 sticky: false
