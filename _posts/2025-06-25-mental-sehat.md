@@ -2,7 +2,6 @@
 layout: post
 title: "Rahasia Sederhana Menjaga Kesehatan Mental di Era Digital"
 author: "Wildan Hidayat"
-permalink: /mental-sehat/
 comments: false
 tags: [kesehatan mental, era digital, self care, hidup sehat]
 excerpt_separator: <!--more-->
