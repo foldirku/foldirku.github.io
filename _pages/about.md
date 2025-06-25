@@ -1,15 +1,26 @@
 ---
 layout: post
-title: "About"
-author: "Chester"
+title: "Tentang Saya"
+author: "Wildan Hidayat"
 permalink: /about/
 ---
 
-A friend of mine writes short stories. One sunny day, I asked if he wanted a website to showcase his works and he agreed. I decided to use GitHub Pages to host his site. That way he wouldn't have to buy a domain and a server.
+Halo! Selamat datang di blog pribadi saya.
 
-While doing some research up on GitHub Pages, I accidentally chanced upon this _simple, blog-aware, static site generator_ called [Jekyll](https://jekyllrb.com/) which works really well with GitHub Pages. I figured it would do just fine for my friend and I set about searching for a pretty theme. I wanted a theme with a _book-ish_ vibe. Unfortunately, most of the themes were too modern. Eventually, I caved and begun working on my own theme. With the help of [Poole](https://github.com/poole/poole), the Jekyll Butler, I was able to build **Tale**.
+Saya membuat situs ini sebagai tempat untuk **berbagi informasi**, menuangkan pemikiran, serta mendokumentasikan hal-hal bermanfaat yang saya pelajari dari berbagai bidang—khususnya seputar Islam, kehidupan sehari-hari, teknologi, dan inspirasi pribadi.
 
-## Contribute
-Feel free to create an issue or make a pull request on [GitHub](https://github.com/chesterhow/tale).
+Tujuan utama dari blog ini adalah untuk:
+- Menyebarkan ilmu dan wawasan yang bermanfaat
+- Menulis sebagai bentuk refleksi dan catatan perjalanan hidup
+- Membangun koneksi dengan pembaca yang memiliki minat yang sama
 
-Thanks for reading!
+Situs ini dibangun menggunakan [Jekyll](https://jekyllrb.com/) dan di-host secara gratis melalui [GitHub Pages](https://pages.github.com/). Saya memilih pendekatan ini karena sederhana, cepat, dan cukup fleksibel untuk kebutuhan saya.
+
+Jika kamu menemukan tulisan yang bermanfaat di sini, saya sangat senang. Dan jika kamu punya kritik, saran, atau sekadar ingin menyapa, jangan ragu untuk menghubungi saya.
+
+## Kontak
+Silakan hubungi saya melalui:
+- 📧 Email: `your-email@example.com`
+- 📬 GitHub: [@foldirku](https://github.com/foldirku)
+
+Terima kasih sudah mampir!
