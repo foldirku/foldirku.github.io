@@ -1,0 +1,13 @@
+name: Scheduled Build
+on:
+  schedule:
+    - cron: "0 18 * * *" # Setiap jam
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Touch index.html (trigger build)
+      run: touch index.html && git config user.name "auto" && git config user.email "auto@github.com" && git commit -am "Rebuild to check scheduled posts" || echo "No changes"
+    - run: git push
