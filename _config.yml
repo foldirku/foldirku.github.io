@@ -3,6 +3,7 @@ title:          foldir xyz
 description:    "foldir.xyz adalah blog pribadi."
 baseurl:        ""
 url:            "https://foldir.xyz"
+timezone: Asia/Jakarta
 
 # Google Analytics
 google_analytics: UA—XXXXXXXX-X
