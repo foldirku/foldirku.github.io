@@ -1,36 +1,47 @@
 name: Hapus Semua Workflow Run
 
 on:
-  workflow_dispatch:  # hanya jalan jika kamu klik manual
+  workflow_dispatch:
 
 jobs:
   delete-runs:
     runs-on: ubuntu-latest
     steps:
-      - name: Dapatkan daftar run
-        run: |
-          echo "Ambil dan hapus semua run..."
+      - name: Install jq
+        run: sudo apt-get install jq
 
-          REPO="${{ github.repository }}"
-          TOKEN="${{ secrets.PAT }}"
+      - name: Ambil dan hapus semua workflow run
+        env:
+          REPO: ${{ github.repository }}
+          TOKEN: ${{ secrets.PAT }}
+        run: |
+          echo "Menghapus semua workflow run..."
           PAGE=1
 
           while true; do
             RESPONSE=$(curl -s -H "Authorization: token $TOKEN" \
+              -H "Accept: application/vnd.github+json" \
               "https://api.github.com/repos/$REPO/actions/runs?per_page=100&page=$PAGE")
 
-            RUN_IDS=$(echo "$RESPONSE" | jq '.workflow_runs[].id')
+            COUNT=$(echo "$RESPONSE" | jq '.total_count')
+            if [ "$COUNT" = "0" ] || [ "$COUNT" = "null" ]; then
+              echo "Tidak ada run ditemukan atau gagal mengambil data."
+              break
+            fi
 
-            if [ -z "$RUN_IDS" ] || [ "$RUN_IDS" = "" ]; then
-              echo "Selesai."
+            RUN_IDS=$(echo "$RESPONSE" | jq -r '.workflow_runs[].id')
+            if [ -z "$RUN_IDS" ]; then
+              echo "Semua run telah dihapus."
               break
             fi
 
             for ID in $RUN_IDS; do
               echo "Menghapus run ID: $ID"
               curl -s -X DELETE -H "Authorization: token $TOKEN" \
+                -H "Accept: application/vnd.github+json" \
                 "https://api.github.com/repos/$REPO/actions/runs/$ID"
             done
 
-            PAGE=$((PAGE+1))
+            PAGE=$((PAGE + 1))
+            sleep 1
           done
