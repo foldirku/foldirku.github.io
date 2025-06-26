@@ -1,14 +1,14 @@
-// Colors — versi modern elegan
-$default-color: #2d2d2d !default;         // teks utama (hitam keabu-abuan)
-$default-shade: #1a1a1a !default;         // untuk judul, heading, atau nav gelap
-$default-tint: #cccccc !default;          // teks pasif / border ringan
-$grey-1: #bfbfbf !default;                // abu netral
-$grey-2: #eaeaea !default;                // background konten
-$grey-3: #fdfdfd !default;                // background utama (hampir putih)
+// Colors — Modern Blue Theme
+$default-color: #1f2d3d !default;        // teks utama
+$default-shade: #0f172a !default;        // nav atau judul
+$default-tint: #94a3b8 !default;         // teks pasif
+$grey-1: #cbd5e1 !default;
+$grey-2: #e2e8f0 !default;
+$grey-3: #f8fafc !default;
 $white: #ffffff !default;
-$blue: #4e54c8 !default;                  // warna utama modern (ungu biru elegan)
-$shadow-color: rgba(0, 0, 0, 0.1) !default; // bayangan lembut
-$code-color: #e06c75 !default;            // warna code block (merah kalem)
+$blue: #2563eb !default;                // biru utama
+$shadow-color: rgba(37, 99, 235, 0.1) !default;
+$code-color: #3b82f6 !default;            // warna code block (merah kalem)
 // Colors
 //$default-color: #555 !default;
 //$default-shade: #353535 !default;
