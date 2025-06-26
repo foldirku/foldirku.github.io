@@ -1,0 +1,36 @@
+name: Hapus Semua Workflow Run
+
+on:
+  workflow_dispatch:  # hanya jalan jika kamu klik manual
+
+jobs:
+  delete-runs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dapatkan daftar run
+        run: |
+          echo "Ambil dan hapus semua run..."
+
+          REPO="${{ github.repository }}"
+          TOKEN="${{ secrets.PAT }}"
+          PAGE=1
+
+          while true; do
+            RESPONSE=$(curl -s -H "Authorization: token $TOKEN" \
+              "https://api.github.com/repos/$REPO/actions/runs?per_page=100&page=$PAGE")
+
+            RUN_IDS=$(echo "$RESPONSE" | jq '.workflow_runs[].id')
+
+            if [ -z "$RUN_IDS" ] || [ "$RUN_IDS" = "" ]; then
+              echo "Selesai."
+              break
+            fi
+
+            for ID in $RUN_IDS; do
+              echo "Menghapus run ID: $ID"
+              curl -s -X DELETE -H "Authorization: token $TOKEN" \
+                "https://api.github.com/repos/$REPO/actions/runs/$ID"
+            done
+
+            PAGE=$((PAGE+1))
+          done
