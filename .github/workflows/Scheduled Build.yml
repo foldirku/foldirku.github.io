@@ -1,13 +1,28 @@
 name: Scheduled Build
 on:
   schedule:
-    - cron: "0 18 * * *" # Setiap jam
+    - cron: "9 18 * * *" # Setiap hari jam 01.00 WIB
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v3
-    - name: Touch index.html (trigger build)
-      run: touch index.html && git config user.name "auto" && git config user.email "auto@github.com" && git commit -am "Rebuild to check scheduled posts" || echo "No changes"
-    - run: git push
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Touch file (to trigger rebuild)
+        run: |
+          date >> .rebuild.log
+          git add .rebuild.log
+          git commit -m "Scheduled rebuild" || echo "Nothing to commit"
+
+      - name: Push changes
+        run: git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
