@@ -1,14 +1,25 @@
+// Colors — versi modern elegan
+$default-color: #2d2d2d !default;         // teks utama (hitam keabu-abuan)
+$default-shade: #1a1a1a !default;         // untuk judul, heading, atau nav gelap
+$default-tint: #cccccc !default;          // teks pasif / border ringan
+$grey-1: #bfbfbf !default;                // abu netral
+$grey-2: #eaeaea !default;                // background konten
+$grey-3: #fdfdfd !default;                // background utama (hampir putih)
+$white: #ffffff !default;
+$blue: #4e54c8 !default;                  // warna utama modern (ungu biru elegan)
+$shadow-color: rgba(0, 0, 0, 0.1) !default; // bayangan lembut
+$code-color: #e06c75 !default;            // warna code block (merah kalem)
 // Colors
-$default-color: #555 !default;
-$default-shade: #353535 !default;
-$default-tint: #aaa !default;
-$grey-1: #979797 !default;
-$grey-2: #e5e5e5 !default;
-$grey-3: #f9f9f9 !default;
-$white: #fff !default;
-$blue: #4a9ae1 !default;
-$shadow-color: rgba(0, 0, 0, .2) !default;
-$code-color: #bf616a !default;
+//$default-color: #555 !default;
+//$default-shade: #353535 !default;
+//$default-tint: #aaa !default;
+//$grey-1: #979797 !default;
+//$grey-2: #e5e5e5 !default;
+//$grey-3: #f9f9f9 !default;
+//$white: #fff !default;
+//$blue: #4a9ae1 !default;
+//$shadow-color: rgba(0, 0, 0, .2) !default;
+//$code-color: #bf616a !default;
 
 // Fonts
 $serif-primary: 'Libre Baskerville', 'Times New Roman', Times, serif !default;
