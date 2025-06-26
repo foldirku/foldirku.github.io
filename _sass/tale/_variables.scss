@@ -1,5 +1,5 @@
 // Colors — Modern Blue Theme
-$default-color: red ;        // teks utama
+$default-color: #1f2d3d ;        // teks utama
 $default-shade: #0f172a;        // nav atau judul
 $default-tint: #94a3b8;         // teks pasif
 $grey-1: #cbd5e1 ;
@@ -22,10 +22,10 @@ $code-color: #3b82f6 ;            // warna code block (merah kalem)
 //$code-color: #bf616a !default;
 
 // Fonts
-$serif-primary: 'Libre Baskerville', 'Times New Roman', Times, serif !default;
-$serif-secondary: Palatino, 'Palatino LT STD', 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif !default;
-$sans-serif: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif !default;
-$monospaced: Menlo, Monaco, monospace !default;
+$serif-primary: 'Libre Baskerville', 'Times New Roman', Times, serif ;
+$serif-secondary: Palatino, 'Palatino LT STD', 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif ;
+$sans-serif: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+$monospaced: Menlo, Monaco, monospace ;
 
 @mixin box-sizing($type: border-box) {
   -webkit-box-sizing: $type;
