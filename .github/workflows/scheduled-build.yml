@@ -1,7 +1,8 @@
 name: Scheduled Build
 on:
   schedule:
-    - cron: "9 18 * * *" # Setiap hari jam 01.00 WIB
+    - cron: "9 18 * * *"
+  workflow_dispatch:
 
 jobs:
   build:
