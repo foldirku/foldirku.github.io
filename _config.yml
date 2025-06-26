@@ -66,3 +66,5 @@ exclude:
 # Disqus Comment System
 # ------------------------
 disqus:         foldirxyz # Ganti dengan ID Disqus milikmu yang benar
+lsi: false
+strict_front_matter: true
