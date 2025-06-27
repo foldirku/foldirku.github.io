@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Tentang Saya"
+title: "Privasi"
 author: "Wildan Hidayat"
 permalink: /privacy/
 ---
