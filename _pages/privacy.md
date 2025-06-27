@@ -67,6 +67,4 @@ Kebijakan ini dapat diperbarui sewaktu-waktu. Perubahan akan diumumkan di halama
 
 ## 7. Kontak
 
-Jika Anda memiliki pertanyaan tentang kebijakan ini, silakan hubungi kami melalui halaman [Contact](/contact) atau email:
-
-📧 **{{ site.email }}**
+Jika Anda memiliki pertanyaan tentang kebijakan ini, silakan hubungi kami melalui halaman [Contact](/contact).
