@@ -14,13 +14,9 @@ Tujuan utama dari blog ini adalah untuk:
 - Menulis sebagai bentuk refleksi dan catatan perjalanan hidup
 - Membangun koneksi dengan pembaca yang memiliki minat yang sama
 
-Situs ini dibangun menggunakan [Jekyll](https://jekyllrb.com/) dan di-host secara gratis melalui [GitHub Pages](https://pages.github.com/). Saya memilih pendekatan ini karena sederhana, cepat, dan cukup fleksibel untuk kebutuhan saya.
-
 Jika kamu menemukan tulisan yang bermanfaat di sini, saya sangat senang. Dan jika kamu punya kritik, saran, atau sekadar ingin menyapa, jangan ragu untuk menghubungi saya.
 
 ## Kontak
-Silakan hubungi saya melalui:
-- 📧 Email: `your-email@example.com`
-- 📬 GitHub: [@foldirku](https://github.com/foldirku)
+Silakan hubungi saya melalui: [Contact](/contact)
 
 Terima kasih sudah mampir!
