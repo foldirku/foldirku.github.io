@@ -13,8 +13,7 @@ Jika kamu memiliki pertanyaan, kritik, saran, atau sekadar ingin menyapa, jangan
 
 ## 📧 Email
 
-Silakan kirim email ke:
-{{ site.email }}
+Silakan kirim email ke: {{ author.email }}
 
 ---
 
