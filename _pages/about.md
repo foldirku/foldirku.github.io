@@ -2,7 +2,7 @@
 layout: post
 title: "Tentang Saya"
 author: "Wildan Hidayat"
-permalink: /about/
+permalink: /about
 ---
 
 Halo! Selamat datang di blog pribadi saya.
