@@ -2,7 +2,7 @@
 layout: post
 title: "Kontak"
 author: "Wildan Hidayat"
-permalink: /contact/
+permalink: /contact
 ---
 
 # Hubungi Kami
