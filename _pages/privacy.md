@@ -2,7 +2,7 @@
 layout: post
 title: "Privasi"
 author: "Wildan Hidayat"
-permalink: /privacy/
+permalink: /privacy
 ---
 
 # Privacy Policy
