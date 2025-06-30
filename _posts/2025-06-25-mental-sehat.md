@@ -9,6 +9,7 @@ sticky: false
 hidden: false
 ---
 
+<img src="{{ site.image }}">
 Kesehatan mental kini menjadi topik yang semakin diperhatikan, terlebih di era digital yang serba cepat dan penuh tekanan. Namun, masih banyak orang yang mengabaikan pentingnya menjaga kesehatan mental dalam kehidupan sehari-hari. Padahal, cara-cara sederhana bisa berdampak besar.
 
 <!--more-->
