@@ -2,15 +2,16 @@
 # Site settings
 # ------------------------
 title:          foldir xyz
-description:    "foldir.xyz adalah blog pribadi"
-baseurl:        "" # Jangan diisi jika di root domain
+description:    "foldir.xyz adalah blog pribadi berisi catatan bermanfaat, islami, teknologi, dan kehidupan sehari-hari."
+baseurl:        "" # Kosongkan jika di root domain
 url:            "https://foldir.xyz"
 timezone:       Asia/Jakarta
+lang:           id
 
 # ------------------------
 # Google Analytics
 # ------------------------
-google_analytics: UA-XXXXXXXX-X # (jika sudah pakai GA4, gunakan gtag script manual di layout)
+google_analytics: UA-XXXXXXXX-X # Jika pakai GA4, masukkan gtag manual di layout
 
 # ------------------------
 # Author Info
@@ -18,12 +19,29 @@ google_analytics: UA-XXXXXXXX-X # (jika sudah pakai GA4, gunakan gtag script man
 author:
   name:         Wildan Hidayat
   url:          https://foldir.xyz
-  email:        your@email.com # Bukan URL ya, isi alamat email asli
+  email:        your@email.com
+
+# ------------------------
+# SEO Defaults & Social
+# ------------------------
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/default-thumbnail.jpg  # Thumbnail default untuk semua halaman
+      twitter:
+        username: "@foldir_xyz"  # Opsional: jika punya akun Twitter
+social:
+  name: foldir xyz
+  links:
+    - https://twitter.com/foldir_xyz
 
 # ------------------------
 # Build Settings
 # ------------------------
 markdown:       kramdown
+kramdown:
+  input: GFM
 include:
   - _pages
 
@@ -42,12 +60,12 @@ plugins:
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-sitemap
-  # - jemoji # Un-comment untuk aktifkan emoji di markdown
+  # - jemoji
 
 # ------------------------
 # Permalinks & Pagination
 # ------------------------
-permalink:      /:title
+permalink:      /:title/
 paginate:       5
 
 # ------------------------
@@ -65,6 +83,10 @@ exclude:
 # ------------------------
 # Disqus Comment System
 # ------------------------
-disqus:         foldirxyz # Ganti dengan ID Disqus milikmu yang benar
+disqus:         foldirxyz
+
+# ------------------------
+# Misc Settings
+# ------------------------
 lsi: false
 strict_front_matter: true
