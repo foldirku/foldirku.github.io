@@ -2,15 +2,13 @@
 layout: post
 title: "Rahasia Sederhana Menjaga Kesehatan Mental di Era Digital"
 author: "Wildan Hidayat"
-comments: false
+comments: true
 tags: [kesehatan mental, era digital, self care, hidup sehat]
 excerpt_separator: <!--more-->
 sticky: false
 hidden: false
-image: assets/apple-touch-icon.webp
 ---
 
-<img src="{{ site.image }}">
 Kesehatan mental kini menjadi topik yang semakin diperhatikan, terlebih di era digital yang serba cepat dan penuh tekanan. Namun, masih banyak orang yang mengabaikan pentingnya menjaga kesehatan mental dalam kehidupan sehari-hari. Padahal, cara-cara sederhana bisa berdampak besar.
 
 <!--more-->
