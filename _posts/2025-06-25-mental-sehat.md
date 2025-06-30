@@ -7,6 +7,7 @@ tags: [kesehatan mental, era digital, self care, hidup sehat]
 excerpt_separator: <!--more-->
 sticky: false
 hidden: false
+image: assets/apple-touch-icon.webp
 ---
 
 <img src="{{ site.image }}">
