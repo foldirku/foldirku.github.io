@@ -83,7 +83,7 @@ exclude:
 # ------------------------
 # Disqus Comment System
 # ------------------------
-disqus:         soislamic
+disqus:         jekyll-tale
 
 # ------------------------
 # Misc Settings
