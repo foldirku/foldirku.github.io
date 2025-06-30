@@ -28,7 +28,7 @@ defaults:
   - scope:
       path: ""
     values:
-      image: /assets/default-thumbnail.jpg  # Thumbnail default untuk semua halaman
+      image: /assets/apple-touch-icon.webp  # Thumbnail default untuk semua halaman
       twitter:
         username: "@foldir_xyz"  # Opsional: jika punya akun Twitter
 social:
@@ -65,7 +65,7 @@ plugins:
 # ------------------------
 # Permalinks & Pagination
 # ------------------------
-permalink:      /:title/
+permalink:      /:title
 paginate:       5
 
 # ------------------------
