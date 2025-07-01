@@ -2,7 +2,7 @@
 layout: post  
 title: "Cara Mengatasi Overthinking Menjelang Tidur"  
 author: "Wildan Hidayat"  
-comments: false  
+comments: true  
 tags: [kesehatan mental, tidur, overthinking, tips hidup sehat]  
 excerpt_separator: <!--more-->  
 sticky: false  
