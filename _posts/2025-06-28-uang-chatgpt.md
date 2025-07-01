@@ -2,7 +2,7 @@
 layout: post  
 title: "Rahasia Menghasilkan Uang dari ChatGPT: Tips Terbaru 2025"  
 author: "Wildan Hidayat"  
-comments: false  
+comments: true  
 tags: [chatgpt, uang-online, ai, teknologi]  
 excerpt_separator: <!--more-->  
 sticky: false  
