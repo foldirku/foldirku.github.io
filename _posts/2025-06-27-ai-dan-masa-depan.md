@@ -2,7 +2,7 @@
 layout: post
 title: "Kecerdasan Buatan (AI): Mengubah Dunia Lebih Cepat dari yang Kita Bayangkan"
 author: "Wildan Hidayat"
-comments: false
+comments: true
 tags: [teknologi, AI, kecerdasan buatan, masa depan]
 excerpt_separator: <!--more-->
 sticky: false
