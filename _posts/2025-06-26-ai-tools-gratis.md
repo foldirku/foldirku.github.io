@@ -2,7 +2,7 @@
 layout: post  
 title: "10 AI Tools Gratis Terbaik untuk Produktivitas 2025"  
 author: "Wildan Hidayat"  
-comments: false  
+comments: true 
 tags: [ai, tools, gratis, produktivitas]  
 excerpt_separator: <!--more-->  
 sticky: false  
