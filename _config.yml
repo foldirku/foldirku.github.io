@@ -11,7 +11,7 @@ lang:           id
 # ------------------------
 # Google Analytics
 # ------------------------
-google_analytics: UA-XXXXXXXX-X # Jika pakai GA4, masukkan gtag manual di layout
+google_analytics: GTM-MDLLG3RZ # Jika pakai GA4, masukkan gtag manual di layout
 
 # ------------------------
 # Author Info
